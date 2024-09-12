@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package shop;
+option go_package = "github.com/dodirepository/protobuff/shop";
+
+message ShopResponse {
+  int32 shop_id = 1;
+  string shop_name = 2;
+}
+
+// Service definition
+service ShopService {
+  // RPC method to get shop and warehouse details
+  rpc GetShopDetails (ShopRequest) returns (ShopResponse);
+}
+
+// Define the request message
+message ShopRequest {
+  int32 shop_id = 1;
+}
