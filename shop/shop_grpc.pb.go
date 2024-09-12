@@ -28,7 +28,6 @@ const (
 //
 // Service definition
 type ShopServiceClient interface {
-	// RPC method to get shop and warehouse details
 	GetShopDetails(ctx context.Context, in *ShopRequest, opts ...grpc.CallOption) (*ShopResponse, error)
 }
 
@@ -56,7 +55,6 @@ func (c *shopServiceClient) GetShopDetails(ctx context.Context, in *ShopRequest,
 //
 // Service definition
 type ShopServiceServer interface {
-	// RPC method to get shop and warehouse details
 	GetShopDetails(context.Context, *ShopRequest) (*ShopResponse, error)
 	mustEmbedUnimplementedShopServiceServer()
 }

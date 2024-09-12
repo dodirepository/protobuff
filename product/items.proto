@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package productsvc;
+option go_package = "github.com/dodirepository/protobuff/product-svc";
+
+message ItemsResponse {
+  int64 id = 1;
+  string name = 2;
+  bool isActive =3;
+  repeated ItemDetail detail = 4;
+}
+
+message ItemDetail {
+  int64 id = 1;
+  int64 item_id = 2;
+  int64 shop_id = 3;
+  string shop_name = 4;
+  float price = 5;
+  int64 qty = 6;
+}
+message ItemsRequest{
+    int64 id = 1;
+    bool isActive =2;
+}
+
+service ProductService {
+  rpc GetProductByID (ItemsRequest) returns (ItemsResponse);
+}
