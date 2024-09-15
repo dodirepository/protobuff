@@ -7,7 +7,10 @@ message ItemsResponse {
   int64 id = 1;
   string name = 2;
   bool isActive =3;
-  repeated ItemDetail detail = 4;
+  float price = 4;
+  int64 qty = 5;
+  int64 shop_id = 6;
+  string shop_name = 7;
 }
 
 message ItemDetail {
@@ -15,14 +18,32 @@ message ItemDetail {
   int64 item_id = 2;
   int64 shop_id = 3;
   string shop_name = 4;
-  float price = 5;
-  int64 qty = 6;
 }
+
 message ItemsRequest{
     int64 id = 1;
-    bool isActive =2;
+    int64 shop_id=2;
+    bool isActive =3;
+}
+
+message ItemsStockUpdate {
+    int64 id = 1;
+    int64 shop_id=2;
+    int64 qty = 3;
+}
+
+message ItemDetailByShopResponse{
+  int64 shop_id = 1;
+  string shop_name = 2;
+  repeated ItemsResponse items = 3;
+}
+
+message ResponseMessage {
+  string message = 1;
 }
 
 service ProductService {
   rpc GetProductByID (ItemsRequest) returns (ItemsResponse);
+  rpc GetProductShopDetail (ItemsRequest) returns (ItemDetailByShopResponse);
+  rpc UpdateStockItems (ItemsStockUpdate) returns (ResponseMessage);
 }
